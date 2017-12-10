@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from '../article.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Article } from '../article';
 
 @Component({
   selector: 'app-article',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor() { }
+  article: Array<Article>
+
+  constructor(
+    private _articleService: ArticleService,
+    private router: Router,
+    private aR: ActivatedRoute) { }
 
   ngOnInit() {
+    this.aR.params.subscribe((params) => {
+      let id = params['id'];
+      this._articleService.getArticle(id)
+        .subscribe(res => this.article = res)
+    })
   }
 
 }
