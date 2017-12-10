@@ -6,32 +6,46 @@ const article = require('../models/article')
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(db, function(err){
-    if(err){
+mongoose.connect(db, function (err) {
+    if (err) {
         console.log(`Error connectiong: ${err}`)
     }
 })
 
-router.get('/all', function(req, res){
+router.get('/all', function (req, res) {
     article.find({})
-    .exec(function(err, articles){
-        if(!err){
-            console.log(articles)
-            res.json(articles)
-        }else{
-            console.log(`Error on list articles: ${err}`)
-        }
-    })    
+        .exec(function (err, articles) {
+            if (!err) {
+                console.log(articles)
+                res.json(articles)
+            } else {
+                console.log(`Error on list articles: ${err}`)
+            }
+        })
 })
 
-router.get('/articles/:id', function(req, res){
+router.get('/articles/:id', function (req, res) {
     console.log('Requesting a specific article')
     article.findById(req.params.id)
-    .exec(function(err, article){
-        if(!err){
-            res.json(article);
-        }else{
-            console.log(`Error on list articles: ${err}`)
+        .exec(function (err, article) {
+            if (!err) {
+                res.json(article);
+            } else {
+                console.log(`Error on list articles: ${err}`)
+            }
+        })
+})
+
+router.post('/create', function (req, res) {
+    console.log(`Posting an article`)
+    var newArticle = new article()
+    newArticle.title = req.body.title
+    newArticle.content = req.body.content
+    newArticle.save(function (err, article) {
+        if (!err) {
+            res.json(article)
+        } else {
+            console.log(`Error inserting the article\nError: ${err}`)
         }
     })
 })

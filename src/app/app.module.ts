@@ -8,13 +8,15 @@ import { HomeComponent } from './home/home.component';
 import { ArticleService } from './article.service';
 import { HttpModule } from '@angular/http';
 import { ArticleComponent } from './article/article.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    ArticleComponent
+    ArticleComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
