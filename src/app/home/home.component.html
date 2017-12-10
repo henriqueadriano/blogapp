@@ -1,3 +1,19 @@
-<p>
-  home works!
-</p>
+<div *ngFor="let item of articles">
+
+  <div class="article-container">
+
+    <div class="row expanded">
+
+      <div class="small-12 medium-5 medium-offset-1 columns">
+        <a routerLink="/article/{{item._id}}">{{item.title}}</a>
+      </div>
+    
+      <div class="small-12 medium-6 columns">
+        <p>{{item.content | slice: 0:330}}</p>
+      </div>
+    
+    </div>
+
+  </div>
+
+</div>
