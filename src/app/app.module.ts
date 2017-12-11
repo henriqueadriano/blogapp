@@ -9,6 +9,7 @@ import { ArticleService } from './article.service';
 import { HttpModule } from '@angular/http';
 import { ArticleComponent } from './article/article.component';
 import { CreateComponent } from './create/create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { CreateComponent } from './create/create.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]

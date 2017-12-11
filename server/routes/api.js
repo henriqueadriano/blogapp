@@ -50,4 +50,31 @@ router.post('/create', function (req, res) {
     })
 })
 
+router.post('/update/:id', function (req, res) {
+    console.log('Update an Article')
+    article.findById(req.params.id)
+        .exec(function (err, article) {
+            if (!err) {
+                article.title = req.body.title
+                article.content = req.body.content
+                article.save()
+                res.json(article)
+            } else {
+                console.log(`Error updating an Article\nError: ${err}`)
+            }
+        })
+})
+
+router.delete('/delete/:id', function (req, res) {
+    console.log('Deleting article')
+    article.findByIdAndRemove(req.params.id)
+        .exec(function (err, article) {
+            if (!err) {
+                res.json(article);
+            } else {
+                console.log(`Error deleting article: ${err}`)
+            }
+        })
+})
+
 module.exports = router
