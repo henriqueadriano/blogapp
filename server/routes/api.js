@@ -65,7 +65,7 @@ router.post('/update/:id', function (req, res) {
         })
 })
 
-router.delete('/delete/:id', function (req, res) {
+router.get('/delete/:id', function (req, res) {
     console.log('Deleting article')
     article.findByIdAndRemove(req.params.id)
         .exec(function (err, article) {
